@@ -16,9 +16,9 @@ The following sections assume that your terminal is currently running/using the 
 Dependency Stack
 - python-dotenv 
 - pinecone-client
-- 
+- google-generativeai
 
-Do `pip install python-dotenv pinecone-client`.
+Do `pip install python-dotenv pinecone-client google-generativeai`.
 
 # Run setup.py
 Run your virtual environment using Powershell and executing the script inside `./venv/Scripts/activate`.
