@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-load_dotenv(".env.local")
+load_dotenv()
 
 from pinecone import Pinecone, ServerlessSpec
 import google.generativeai as genai
@@ -46,7 +46,7 @@ for review in raw_dat['reviews']:
 index = pc.Index("rag")
 upsert_response = index.upsert(
     vectors=dat,
-    namespace="ns2",
+    namespace="ns1",
 )
 
 # Print logs
