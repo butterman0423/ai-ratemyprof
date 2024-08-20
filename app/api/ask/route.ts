@@ -9,7 +9,6 @@ import { queryRAG, formatQueryResults } from '@/lib/rag';
 
 export async function POST(req: NextRequest) {
     const dat = (await req.json()) as RequestBody;
-
     if(!verifyBody(dat)) {
         return new NextResponse('Missing data or data fields in request.', { status: 400 });
     }
@@ -20,10 +19,10 @@ export async function POST(req: NextRequest) {
 
     const prompt = dat.incoming + res;
     const logs: Log[] = dat.history
-        .map(({ role, message }) => {
+        .map(({ role, content }) => {
             return {
                 role,
-                parts: [{ text: message }]
+                parts: [{ text: content }]
             } as Log
         })
 

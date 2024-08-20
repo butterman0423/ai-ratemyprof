@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [messages, setMessages] = useState([{
-    role: "assisant",
+    role: "assistant",
     content: "Hi! I'm the Rate My Professor support assistant. How can I help you today?"
   }])
   const [message, setMessage] = useState("")

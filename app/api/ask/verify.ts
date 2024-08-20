@@ -1,6 +1,6 @@
 export type ChatRecord = {
     role: string, 
-    message: string
+    content: string
 }
 
 export type RequestBody = {
@@ -12,5 +12,5 @@ export function verifyBody(dat?: RequestBody): boolean {
     return dat != undefined
         && 'incoming' in dat
         && 'history' in dat
-        && dat.history.every(({ role, message }) => role != undefined && message != undefined);
+        && dat.history.every(({ role, content }) => role != undefined && content != undefined);
 }
