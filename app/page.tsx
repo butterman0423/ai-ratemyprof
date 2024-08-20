@@ -9,6 +9,7 @@ export default function Home() {
     content: "Hi! I'm the Rate My Professor support assistant. How can I help you today?"
   }])
   const [message, setMessage] = useState("")
+  const [debounce, setDebounce] = useState(false);
 
   async function fetchResponse() {
     const res = await fetch('/api/ask', {
@@ -50,6 +51,7 @@ export default function Home() {
     // Takes effect next render
     setMessage('');
     setHistory(future);
+    setDebounce(true);
 
     (async () => {
       try {
@@ -61,6 +63,7 @@ export default function Home() {
           ...future,
           { role: 'model', content: res }
         ])
+        setDebounce(false);
       }
       catch(e) {
         console.error(e);
@@ -91,7 +94,7 @@ export default function Home() {
         </Stack>
         <Stack direction={'row'} spacing={2}>
           <TextField label="Message" fullWidth value={message} onChange={(e) => setMessage(e.target.value)} />
-          <Button variant="contained" onClick={sendMessage}>Send</Button>
+          <Button variant="contained" onClick={sendMessage} disabled={debounce}>Send</Button>
         </Stack>
       </Stack>
     </Box>
