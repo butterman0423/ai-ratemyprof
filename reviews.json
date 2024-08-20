@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. John Smith",
+        "subject": "Mathematics",
+        "stars": 5,
+        "review": "Great professor, explains concepts clearly and is always available for help."
+      },
+      {
+        "professor": "Dr. Jane Doe",
+        "subject": "Physics",
+        "stars": 4,
+        "review": "Challenging course but Dr. Doe makes it interesting with practical examples."
+      },
+      {
+        "professor": "Dr. Alan Johnson",
+        "subject": "Chemistry",
+        "stars": 3,
+        "review": "Good lecturer but sometimes hard to follow. Labs are well-organized."
+      },
+      {
+        "professor": "Dr. Emily Davis",
+        "subject": "Biology",
+        "stars": 4,
+        "review": "Engaging lectures and supportive during office hours."
+      },
+      {
+        "professor": "Dr. Robert Brown",
+        "subject": "Computer Science",
+        "stars": 5,
+        "review": "Excellent professor! His coding exercises really helped me understand the material."
+      },
+      {
+        "professor": "Dr. Susan Taylor",
+        "subject": "History",
+        "stars": 2,
+        "review": "Lectures are dry and exams are tough. Not very responsive to emails."
+      },
+      {
+        "professor": "Dr. William Martinez",
+        "subject": "English",
+        "stars": 4,
+        "review": "Good class with interesting reading material. Discussions are insightful."
+      },
+      {
+        "professor": "Dr. Lisa Wilson",
+        "subject": "Economics",
+        "stars": 3,
+        "review": "Average class. Material can be confusing at times, but Dr. Wilson is approachable."
+      },
+      {
+        "professor": "Dr. Michael Garcia",
+        "subject": "Philosophy",
+        "stars": 5,
+        "review": "Incredible professor! His lectures are thought-provoking and engaging."
+      },
+      {
+        "professor": "Dr. Karen Hernandez",
+        "subject": "Sociology",
+        "stars": 4,
+        "review": "Enjoyed the course, very interactive and Dr. Hernandez encourages participation."
+      },
+      {
+        "professor": "Dr. Christopher Lee",
+        "subject": "Political Science",
+        "stars": 3,
+        "review": "Decent professor, but sometimes hard to keep up with the pace of the class."
+      },
+      {
+        "professor": "Dr. Patricia Clark",
+        "subject": "Psychology",
+        "stars": 5,
+        "review": "Dr. Clark is amazing! She makes complex concepts easy to understand."
+      },
+      {
+        "professor": "Dr. Charles Lewis",
+        "subject": "Art History",
+        "stars": 4,
+        "review": "Passionate about the subject, and it shows in his lectures."
+      },
+      {
+        "professor": "Dr. Barbara Walker",
+        "subject": "Statistics",
+        "stars": 3,
+        "review": "Good professor, but the course can be tough if you don't keep up with the work."
+      },
+      {
+        "professor": "Dr. Daniel Hall",
+        "subject": "Engineering",
+        "stars": 5,
+        "review": "Fantastic! His practical approach to problem-solving is very helpful."
+      },
+      {
+        "professor": "Dr. Sarah Allen",
+        "subject": "Music Theory",
+        "stars": 4,
+        "review": "Engaging and passionate about the subject. The class was enjoyable."
+      },
+      {
+        "professor": "Dr. Joseph Young",
+        "subject": "Environmental Science",
+        "stars": 4,
+        "review": "Great professor with a lot of real-world experience. The course was very informative."
+      },
+      {
+        "professor": "Dr. Nancy King",
+        "subject": "Linguistics",
+        "stars": 5,
+        "review": "Dr. King is brilliant! Her lectures are insightful, and she makes learning fun."
+      },
+      {
+        "professor": "Dr. Richard Scott",
+        "subject": "Business Administration",
+        "stars": 3,
+        "review": "Average class. The professor is knowledgeable, but the material can be dry."
+      },
+      {
+        "professor": "Dr. Laura Adams",
+        "subject": "Anthropology",
+        "stars": 4,
+        "review": "Interesting course with a lot of discussion. Dr. Adams is very knowledgeable."
+      }
+    ]
+  }
+  
