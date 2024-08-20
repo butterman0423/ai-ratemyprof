@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export type Embedding = number;
 export type Log = {
     role: 'user' | 'model',
-    parts: [{ text: ''}]
+    parts: [{ text: string}]
 }
 
 export const genAI = new GoogleGenerativeAI(process.env.API_KEY || '');
