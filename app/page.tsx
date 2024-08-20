@@ -4,6 +4,7 @@ import { Box, Stack } from "@mui/material";
 import { useState } from "react";
 import ChatInput from "@/components/ChatInput";
 import Bubble from '@/components/Bubble';
+import ChatWindow from "@/components/ChatWindow";
 
 export default function Home() {
   const [history, setHistory] = useState([{
@@ -74,7 +75,7 @@ export default function Home() {
   return (
     <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <Stack direction={'column'} width="500px" height="700px" border="1px solid black" p={2} spacing={3}>
-        <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" maxHeight="100%">
+        <ChatWindow width='100%' height='100%'>
           {
             history.map(({ role, content }, idx) => {
               const flushLeft = role === 'model';
@@ -82,7 +83,7 @@ export default function Home() {
               return <Bubble key={idx} content={content} bgcolor={bgcolor} flushLeft={flushLeft}/>
             })
           }
-        </Stack>
+        </ChatWindow>
         <ChatInput onSubmit={sendMessage} debounce={debounce}/>
       </Stack>
     </Box>
