@@ -8,7 +8,7 @@ export default function Home() {
     role: "model",
     content: "Hi! I'm the Rate My Professor support assistant. How can I help you today?"
   }])
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
   const [debounce, setDebounce] = useState(false);
 
   async function fetchResponse() {
@@ -20,10 +20,10 @@ export default function Home() {
       body: JSON.stringify({ history: history, incoming: message })
     });
 
-    if(!res.ok) {
+    if (!res.ok) {
       throw Error(`Communication failed with code ${res.status}.`)
     }
-    if(!res.body) {
+    if (!res.body) {
       throw Error('Missing response from server.')
     }
 
@@ -31,9 +31,9 @@ export default function Home() {
     const decoder = new TextDecoder();
 
     let txt = '';
-    while(true) {
+    while (true) {
       const stream = await reader.read();
-      if(stream.done) break;
+      if (stream.done) break;
 
       const raw = stream.value;
       txt += decoder.decode(raw);
@@ -64,21 +64,33 @@ export default function Home() {
           { role: 'model', content: res }
         ])
         setDebounce(false);
-      }
-      catch(e) {
+      } catch (e) {
         console.error(e);
       }
     })()
   }
 
-  const handleKeyDown = (e : React.KeyboardEvent) => {
-    if(e.key === 'Enter') {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
       sendMessage();
+    }
   }
-}
 
   return (
-    <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+    <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" position="relative">
+      {/* Sign in*/}
+      <Button
+        variant="outlined"
+        color="primary"
+        sx={{
+          position: "absolute",
+          top: 16,
+          right: 16
+        }}
+      >
+        Sign In
+      </Button>
+
       <Stack direction={'column'} width="500px" height="700px" border="1px solid black" p={2} spacing={3}>
         <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" maxHeight="100%">
           {history.map((history, index) => (
@@ -99,8 +111,16 @@ export default function Home() {
           ))}
         </Stack>
         <Stack direction={'row'} spacing={2}>
-          <TextField label="Message" fullWidth value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown} />
-          <Button variant="contained" onClick={sendMessage} disabled={debounce}>Send</Button>
+          <TextField
+            label="Message"
+            fullWidth
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <Button variant="contained" onClick={sendMessage} disabled={debounce}>
+            Send
+          </Button>
         </Stack>
       </Stack>
     </Box>
