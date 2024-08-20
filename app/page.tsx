@@ -1,23 +1,23 @@
 "use client"
 
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useState } from "react";
+import ChatInput from "@/components/ChatInput";
 
 export default function Home() {
   const [history, setHistory] = useState([{
     role: "model",
     content: "Hi! I'm the Rate My Professor support assistant. How can I help you today?"
   }])
-  const [message, setMessage] = useState("")
   const [debounce, setDebounce] = useState(false);
 
-  async function fetchResponse() {
+  async function fetchResponse(msg: string) {
     const res = await fetch('/api/ask', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ history: history, incoming: message })
+      body: JSON.stringify({ history: history, incoming: msg })
     });
 
     if(!res.ok) {
@@ -42,21 +42,20 @@ export default function Home() {
     return txt;
   }
 
-  const sendMessage = async () => {
+  const sendMessage = async (msg: string) => {
     const future = [
       ...history,
-      { role: 'user', content: message }
+      { role: 'user', content: msg }
     ]
 
     // Takes effect next render
-    setMessage('');
     setHistory(future);
     setDebounce(true);
 
     (async () => {
       try {
-        console.log('Sending message:', message);
-        const res = await fetchResponse();
+        console.log('Sending message:', msg);
+        const res = await fetchResponse(msg);
 
         console.log('Responded with:', res);
         setHistory([
@@ -92,10 +91,7 @@ export default function Home() {
             </Box>
           ))}
         </Stack>
-        <Stack direction={'row'} spacing={2}>
-          <TextField label="Message" fullWidth value={message} onChange={(e) => setMessage(e.target.value)} />
-          <Button variant="contained" onClick={sendMessage} disabled={debounce}>Send</Button>
-        </Stack>
+        <ChatInput onSubmit={sendMessage} debounce={debounce}/>
       </Stack>
     </Box>
   )
