@@ -3,6 +3,7 @@
 import { Box, Stack } from "@mui/material";
 import { useState } from "react";
 import ChatInput from "@/components/ChatInput";
+import Bubble from '@/components/Bubble';
 
 export default function Home() {
   const [history, setHistory] = useState([{
@@ -74,22 +75,13 @@ export default function Home() {
     <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <Stack direction={'column'} width="500px" height="700px" border="1px solid black" p={2} spacing={3}>
         <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" maxHeight="100%">
-          {history.map((history, index) => (
-            <Box
-              key={index}
-              display="flex"
-              justifyContent={history.role === 'model' ? 'flex-start' : 'flex-end'}
-            >
-              <Box
-                bgcolor={history.role === 'model' ? 'primary.main' : 'secondary.main'}
-                color="white"
-                borderRadius={16}
-                p={3}
-              >
-                {history.content}
-              </Box>
-            </Box>
-          ))}
+          {
+            history.map(({ role, content }, idx) => {
+              const flushLeft = role === 'model';
+              const bgcolor = flushLeft ? 'primary.main' : 'secondary.main';
+              return <Bubble key={idx} content={content} bgcolor={bgcolor} flushLeft={flushLeft}/>
+            })
+          }
         </Stack>
         <ChatInput onSubmit={sendMessage} debounce={debounce}/>
       </Stack>
