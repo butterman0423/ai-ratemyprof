@@ -4,66 +4,87 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 
 export default function Home() {
-  const [messages, setMessages] = useState([{
-    role: "assistant",
+  const [history, setHistory] = useState([{
+    role: "model",
     content: "Hi! I'm the Rate My Professor support assistant. How can I help you today?"
   }])
   const [message, setMessage] = useState("")
 
-  const sendMessage = async () => {
-    setMessage('')
-    setMessages((messages) => [
-      ...messages,
-      {role: 'user', content: message},
-      {role: 'assistant', content: ''},
-    ])
-  
-    const response = fetch('/api/ask', {
+  async function fetchResponse() {
+    const res = await fetch('/api/ask', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      }, 
-      body: JSON.stringify([...messages, {role: 'user', content: message}]),
-    }).then(async (res) => {
-      const reader = res.body?.getReader()
-      const decoder = new TextDecoder()
-      let result = ''
-  
-      return reader?.read().then(function processText({done, value}): string | Promise<string> {
-        if (done) {
-          return result
-        }
-        const text = decoder.decode(value || new Uint8Array(), {stream: true})
-        setMessages((messages) => {
-          let lastMessage = messages[messages.length - 1]
-          let otherMessages = messages.slice(0, messages.length - 1)
-          return [
-            ...otherMessages,
-            {...lastMessage, content: lastMessage.content + text},
-          ]
-        })
-        return reader.read().then(processText)
-      })
-    })
+      },
+      body: JSON.stringify({ history: history, incoming: message })
+    });
+
+    if(!res.ok) {
+      throw Error(`Communication failed with code ${res.status}.`)
+    }
+    if(!res.body) {
+      throw Error('Missing response from server.')
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+
+    let txt = '';
+    while(true) {
+      const stream = await reader.read();
+      if(stream.done) break;
+
+      const raw = stream.value;
+      txt += decoder.decode(raw);
+    }
+
+    return txt;
+  }
+
+  const sendMessage = async () => {
+    const future = [
+      ...history,
+      { role: 'user', content: message }
+    ]
+
+    // Takes effect next render
+    setMessage('');
+    setHistory(future);
+
+    (async () => {
+      try {
+        console.log('Sending message:', message);
+        const res = await fetchResponse();
+
+        console.log('Responded with:', res);
+        setHistory([
+          ...future,
+          { role: 'model', content: res }
+        ])
+      }
+      catch(e) {
+        console.error(e);
+      }
+    })()
   }
 
   return (
     <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <Stack direction={'column'} width="500px" height="700px" border="1px solid black" p={2} spacing={3}>
         <Stack direction={'column'} spacing={2} flexGrow={1} overflow="auto" maxHeight="100%">
-          {messages.map((message, index) => (
+          {history.map((history, index) => (
             <Box
               key={index}
               display="flex"
-              justifyContent={message.role === 'assistant' ? 'flex-start' : 'flex-end'}
+              justifyContent={history.role === 'model' ? 'flex-start' : 'flex-end'}
             >
               <Box
-                bgcolor={message.role === 'assistant' ? 'primary.main' : 'secondary.main'}
+                bgcolor={history.role === 'model' ? 'primary.main' : 'secondary.main'}
                 color="white"
                 borderRadius={16}
                 p={3}
               >
-                {message.content}
+                {history.content}
               </Box>
             </Box>
           ))}
