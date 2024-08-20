@@ -1,10 +1,124 @@
 {
     "reviews": [
-        {
-            "professor": "Prof1",
-            "review": "Great professor...",
-            "subject": "Math",
-            "stars": 5
-        }
+      {
+        "professor": "Dr. Emily Blackwell",
+        "subject": "Biology",
+        "stars": 4,
+        "review": "Dr. Blackwell's lectures are engaging and well-structured. She's always willing to help outside of class."
+      },
+      {
+        "professor": "Prof. Michael Chen",
+        "subject": "Computer Science",
+        "stars": 5,
+        "review": "Brilliant professor! Makes complex topics easy to understand. His enthusiasm is contagious."
+      },
+      {
+        "professor": "Dr. Sarah Johnson",
+        "subject": "Psychology",
+        "stars": 3,
+        "review": "Decent instructor, but the workload is overwhelming. Could improve on providing timely feedback."
+      },
+      {
+        "professor": "Prof. Robert Garcia",
+        "subject": "Mathematics",
+        "stars": 4,
+        "review": "Clear explanations and patient with questions. Assignments are challenging but fair."
+      },
+      {
+        "professor": "Dr. Olivia Martinez",
+        "subject": "Chemistry",
+        "stars": 5,
+        "review": "Dr. Martinez is passionate about chemistry and it shows. Her labs are well-organized and informative."
+      },
+      {
+        "professor": "Prof. James Wilson",
+        "subject": "History",
+        "stars": 2,
+        "review": "Lectures are dry and monotonous. Seems knowledgeable but struggles to keep the class engaged."
+      },
+      {
+        "professor": "Dr. Aisha Patel",
+        "subject": "Physics",
+        "stars": 4,
+        "review": "Challenging course, but Dr. Patel makes it worthwhile. Her problem-solving approach is very helpful."
+      },
+      {
+        "professor": "Prof. David Lee",
+        "subject": "English Literature",
+        "stars": 3,
+        "review": "Insightful discussions in class, but grading can be inconsistent. Office hours are beneficial."
+      },
+      {
+        "professor": "Dr. Maria Rodriguez",
+        "subject": "Sociology",
+        "stars": 5,
+        "review": "Thought-provoking lectures and relevant assignments. Dr. Rodriguez is an inspiration!"
+      },
+      {
+        "professor": "Prof. Thomas Brown",
+        "subject": "Economics",
+        "stars": 4,
+        "review": "Solid understanding of the subject. Uses real-world examples to illustrate concepts effectively."
+      },
+      {
+        "professor": "Dr. Lisa Wong",
+        "subject": "Anthropology",
+        "stars": 3,
+        "review": "Interesting course material, but Dr. Wong can be disorganized at times. Grading is fair."
+      },
+      {
+        "professor": "Prof. Alexander Ivanov",
+        "subject": "Political Science",
+        "stars": 5,
+        "review": "Exceptional professor! Facilitates great debates and encourages critical thinking."
+      },
+      {
+        "professor": "Dr. Rachel Green",
+        "subject": "Environmental Science",
+        "stars": 4,
+        "review": "Passionate about the subject. Field trips are a highlight. Some lectures can be a bit rushed."
+      },
+      {
+        "professor": "Prof. John Smith",
+        "subject": "Philosophy",
+        "stars": 2,
+        "review": "Often goes off-topic and assignments are unclear. Interesting subject matter, poor execution."
+      },
+      {
+        "professor": "Dr. Samantha Lee",
+        "subject": "Neuroscience",
+        "stars": 5,
+        "review": "Brilliant researcher and educator. Challenging course but extremely rewarding."
+      },
+      {
+        "professor": "Prof. William Taylor",
+        "subject": "Art History",
+        "stars": 3,
+        "review": "Knowledgeable but can be condescending. Lectures are informative but lack engagement."
+      },
+      {
+        "professor": "Dr. Elena Vasquez",
+        "subject": "Linguistics",
+        "stars": 4,
+        "review": "Clear and concise explanations. Assignments are creative and help reinforce concepts."
+      },
+      {
+        "professor": "Prof. Daniel Kim",
+        "subject": "Marketing",
+        "stars": 5,
+        "review": "Brings real-world experience to the classroom. Group projects are particularly valuable."
+      },
+      {
+        "professor": "Dr. Amanda Nelson",
+        "subject": "Geology",
+        "stars": 3,
+        "review": "Lectures can be dry, but field work is excellent. Dr. Nelson is helpful during office hours."
+      },
+      {
+        "professor": "Prof. Christopher Lee",
+        "subject": "Music Theory",
+        "stars": 4,
+        "review": "Patient and skilled instructor. Makes a complex subject accessible to all skill levels."
+      }
     ]
-}
+  }

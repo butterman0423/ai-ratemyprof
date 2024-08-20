@@ -7,23 +7,25 @@ import os
 import json
 
 # Initial Configuration
+
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 dat_path = os.getenv('REVIEWS_PATH') or 'reviews.json'
 raw_dat = json.load(open(dat_path))
 
-# Pinecone index
-pc.create_index(
-    name="rag",
-    dimension=1536,
-    metric="cosine",
-    spec=ServerlessSpec(cloud="aws", region="us-east-1"),
-)
 
+# Pinecone index
+if not pc.describe_index("rag"):
+    #If you try to create the index again, it will throw an error
+    pc.create_index(
+        name="rag",
+        dimension=768,
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+    )
 # Process data
 dat = []
-
 for review in raw_dat['reviews']:
     res = genai.embed_content(
         model='models/text-embedding-004',
@@ -40,13 +42,11 @@ for review in raw_dat['reviews']:
             "stars": review['stars']
         }
     })
-
-
 # Upsert embeddings into the Pinecone index
 index = pc.Index("rag")
 upsert_response = index.upsert(
     vectors=dat,
-    namespace="ns1",
+    namespace="ns2",
 )
 
 # Print logs
