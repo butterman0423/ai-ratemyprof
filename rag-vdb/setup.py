@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(".env.local")
 
 from pinecone import Pinecone, ServerlessSpec
 import google.generativeai as genai
