@@ -71,6 +71,12 @@ export default function Home() {
     })()
   }
 
+  const handleKeyDown = (e : React.KeyboardEvent) => {
+    if(e.key === 'Enter') {
+      sendMessage();
+  }
+}
+
   return (
     <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <Stack direction={'column'} width="500px" height="700px" border="1px solid black" p={2} spacing={3}>
@@ -93,7 +99,7 @@ export default function Home() {
           ))}
         </Stack>
         <Stack direction={'row'} spacing={2}>
-          <TextField label="Message" fullWidth value={message} onChange={(e) => setMessage(e.target.value)} />
+          <TextField label="Message" fullWidth value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown} />
           <Button variant="contained" onClick={sendMessage} disabled={debounce}>Send</Button>
         </Stack>
       </Stack>
