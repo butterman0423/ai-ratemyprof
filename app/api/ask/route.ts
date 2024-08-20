@@ -35,7 +35,22 @@ export async function POST(req: NextRequest) {
     const aiStream = await getResponseStream(SYSTEM_PROMPT, logs);
     const stream = new ReadableStream({
         async start(controller) {
-
+            const encode = new TextEncoder();
+            try {
+                for await (const chunk of aiStream.stream) {
+                    const raw = chunk.text();
+                    if(raw) {
+                        const txt = encode.encode(raw);
+                        controller.enqueue(txt);
+                    }
+                }
+            }
+            catch(e) {
+                controller.error(e);
+            }
+            finally {
+                controller.close();
+            }
         }
     })
 

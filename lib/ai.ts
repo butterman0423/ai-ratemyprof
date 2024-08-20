@@ -6,7 +6,7 @@ export type Log = {
     parts: [{ text: string}]
 }
 
-export const genAI = new GoogleGenerativeAI(process.env.API_KEY || '');
+export const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 export const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 export const embedModel = genAI.getGenerativeModel({ model: 'text-embedding-004' });
 
@@ -17,7 +17,7 @@ Use them to answer the question if needed.
 `
 
 export async function createEmbedding(input: string): Promise<Embedding[]> {
-    const res = await model.embedContent(input);
+    const res = await embedModel.embedContent(input);
     return res.embedding.values;
 }
 
