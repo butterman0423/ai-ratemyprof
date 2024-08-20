@@ -15,15 +15,22 @@ export default function ChatInput({
 }: ChatInputOptions) {
     const [message, setMessage] = useState<string>('');
 
-    async function handleClick() {
+    async function handleSubmit() {
         setMessage('');
         onSubmit(message);
     }
 
+    const handleKeyDown = (e : React.KeyboardEvent) => {
+        if(e.key === 'Enter') {
+          handleSubmit();
+      }
+    }
+
     return (
         <Stack direction={'row'} spacing={2}>
-          <TextField label="Message" fullWidth value={message} onChange={(e) => setMessage(e.target.value)} />
-          <Button variant="contained" onClick={handleClick} disabled={debounce || false}>Send</Button>
+          <TextField label="Message" fullWidth value={message} 
+            onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown}/>
+          <Button variant="contained" onClick={handleSubmit} disabled={debounce || false}>Send</Button>
         </Stack>
     );
 }
