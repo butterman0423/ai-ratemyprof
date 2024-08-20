@@ -41,4 +41,5 @@ export function formatQueryResults(q: QueryResponse<RecordMetadata>) {
             \n\n
             `
         })
+        .join('');
 }
