@@ -2,6 +2,9 @@
 
 import { Box, Stack } from "@mui/material";
 import { useState } from "react";
+
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import ChatInput from "@/components/ChatInput";
 import Bubble from '@/components/Bubble';
 import ChatWindow from "@/components/ChatWindow";
@@ -73,19 +76,25 @@ export default function Home() {
   }
 
   return (
-    <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <Stack direction={'column'} width="500px" height="700px" border="1px solid black" p={2} spacing={3}>
-        <ChatWindow width='100%' height='100%'>
-          {
-            history.map(({ role, content }, idx) => {
-              const flushLeft = role === 'model';
-              const bgcolor = flushLeft ? 'primary.main' : 'secondary.main';
-              return <Bubble key={idx} content={content} bgcolor={bgcolor} flushLeft={flushLeft}/>
-            })
-          }
-        </ChatWindow>
-        <ChatInput onSubmit={sendMessage} debounce={debounce}/>
-      </Stack>
-    </Box>
+    <>
+      <Container>
+        <Box width='100%' mb={5}>
+          <Typography variant='h1' textAlign='center'>Rate My Professor Chatbot</Typography>
+          <Typography variant='subtitle1' textAlign='center'>Created by Esat Adiloglu, Nathaniel Escaro, Ryan Eshan, Saikarthik Mummadisingu</Typography>
+        </Box>
+        <Stack direction={'column'} height="700px" border="1px solid black" p={2} spacing={3} justifyContent='center' alignContent='stretch'>
+          <ChatWindow width='100%' height='100%'>
+            {
+              history.map(({ role, content }, idx) => {
+                const flushLeft = role === 'model';
+                const bgcolor = flushLeft ? 'primary.main' : 'secondary.main';
+                return <Bubble key={idx} content={content} bgcolor={bgcolor} flushLeft={flushLeft}/>
+              })
+            }
+          </ChatWindow>
+          <ChatInput onSubmit={sendMessage} debounce={debounce}/>
+        </Stack>
+      </Container>
+    </>
   )
 }
