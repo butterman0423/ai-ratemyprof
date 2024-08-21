@@ -74,12 +74,12 @@ export default function Home() {
 
   return (
     <Box width="100vw" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <Stack direction={'column'} width="500px" height="700px" border="1px solid black" p={2} spacing={3}>
+      <Stack direction={'column'} width="80%" height="100%" border="1px solid black" p={3} spacing={3}>
         <ChatWindow width='100%' height='100%'>
           {
             history.map(({ role, content }, idx) => {
               const flushLeft = role === 'model';
-              const bgcolor = flushLeft ? 'primary.main' : 'secondary.main';
+              const bgcolor = flushLeft ? '#32169F' : '#839F16';
               return <Bubble key={idx} content={content} bgcolor={bgcolor} flushLeft={flushLeft}/>
             })
           }

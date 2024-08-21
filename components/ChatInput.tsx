@@ -28,9 +28,9 @@ export default function ChatInput({
 
     return (
         <Stack direction={'row'} spacing={2}>
-          <TextField label="Message" fullWidth value={message} 
+          <TextField sx={{'& .MuiInputBase-root': {height: '90px'},'& .MuiInputBase-input': {padding: '10px', fontSize:"20px"}}} label="Message" fullWidth value={message} 
             onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown}/>
-          <Button variant="contained" onClick={handleSubmit} disabled={debounce || false}>Send</Button>
+          <Button  variant="contained" onClick={handleSubmit} disabled={debounce || false} sx={{width:"150px"}}>Send</Button>
         </Stack>
     );
 }
